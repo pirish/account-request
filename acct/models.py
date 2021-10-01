@@ -1,8 +1,10 @@
 from django.db import models
-from django.forms import ModelForm
 
 
 class AccountType(models.Model):
+    """
+    Model that contains account types and field mappings for AccountRequest model
+    """
     def __str__(self):
         return self.name
     name = models.CharField(max_length=200)
@@ -14,6 +16,9 @@ class AccountType(models.Model):
 
 
 class AccountRequest(models.Model):
+    """
+    Model to contain account request information
+    """
     def __str__(self):
         return self.customer_user
     account_type = models.ForeignKey(AccountType, on_delete=models.CASCADE)
@@ -33,26 +38,3 @@ class AccountRequest(models.Model):
     field_4 = models.CharField(max_length=200, blank=True)
     field_5 = models.CharField(max_length=200, blank=True)
     status = models.IntegerField(default=0, blank=True)
-
-
-class AccountRequestForm(ModelForm):
-    class Meta:
-        model = AccountRequest
-        fields = [
-            'account_type',
-            'request_by',
-            'request_email',
-            'request_email',
-            'request_email',
-            'date_required',
-            'customer_name',
-            'customer_org',
-            'customer_phone',
-            'customer_email',
-            'customer_user',
-            'field_1',
-            'field_2',
-            'field_3',
-            'field_4',
-            'field_5'
-            ]
