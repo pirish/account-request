@@ -1,11 +1,32 @@
-from django.shortcuts import render
-
-# Create your views here.
+# Framework imports
 from django.http import HttpResponse
+from django.template import loader
+from django.shortcuts import get_object_or_404, render, redirect
+from rest_framework import viewsets
+from rest_framework import permissions
+
+
+#local imports
+from .models import AccountType, AccountRequest, AccountRequestForm
 
 
 def index(request):
-    return HttpResponse("Request an account")
+    account_type_list = AccountType.objects.all()
+    print(account_type_list)
+    #template = loader.get_template('acct/index.html')
+    context = {
+        'account_type_list': account_type_list
+    }
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'acct/index.html', context)
 
-def create_request(request, account_type):
-    return HttpResponse("You're requesting account type %s." % account_type)
+def request_account(request, account_type):
+    if request.method == 'POST':
+        account_type_object = AccountType(name=account_type)
+        form = AccountRequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = AccountRequestForm
+    return render(request, 'acct/request.html', {'form': form, 'account_type': account_type})

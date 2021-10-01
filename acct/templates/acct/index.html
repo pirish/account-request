@@ -1,0 +1,9 @@
+{% if account_type_list %}
+    <ul>
+    {% for account_type in account_type_list  %}
+        <li><a href="/acct/{{ account_type.name }}/">{{ account_type.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No account types are available.</p>
+{% endif %}

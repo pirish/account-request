@@ -1,0 +1,7 @@
+<form action="/acct/{{ account_type }}/" method="post">
+    {% csrf_token %}
+    <table border="1">
+    {{ form.as_table }}
+     </table>
+    <input type="submit" value="Submit">
+</form>

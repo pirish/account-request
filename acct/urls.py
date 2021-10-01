@@ -1,9 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from django.shortcuts import render
+from rest_framework import routers
 
 from . import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<string:account_type>/', views.create_request, name='Create Request'),
+    path('<str:account_type>/', views.request_account, name='Create Account Request'),
 
 ]

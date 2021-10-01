@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('ftp/', include('ftp.urls')),
     path('acct/', include('acct.urls')),
     path('admin/', admin.site.urls),
 ]
