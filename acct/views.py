@@ -8,7 +8,25 @@ from rest_framework import permissions
 
 #local imports
 from .models import AccountType, AccountRequest, AccountRequestForm
+from .serializers import AccountRequestSerializer, AccountTypeSerializer
+#from .forms import AccountRequestForm
 
+
+class AccountTypeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows requests to be viewed or submitted
+    """
+    queryset = AccountType.objects.all()
+    serializer_class = AccountTypeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class AccountRequestViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows requests to be viewed or submitted
+    """
+    queryset = AccountRequest.objects.all()
+    serializer_class = AccountRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 def index(request):
     account_type_list = AccountType.objects.all()
