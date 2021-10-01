@@ -36,7 +36,7 @@ def index(request):
     return render(request, 'acct/index.html', context)
 
 
-def request_account(request, account_type):
+def request_account(request):
     if request.method == 'POST':
         form = AccountRequestForm(request.POST)
         if form.is_valid():
@@ -44,4 +44,4 @@ def request_account(request, account_type):
             return redirect('index')
     else:
         form = AccountRequestForm
-    return render(request, 'acct/request.html', {'form': form, 'account_type': account_type})
+    return render(request, 'acct/request.html', {'form': form})
