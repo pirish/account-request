@@ -40,4 +40,4 @@ or
 ```
 curl -H 'Accept: application/json; indent=4' -u admin:password http://127.0.0.1:8000/acct/reqs/
 ```
-
+![Python package](https://github.com/pirish/account-request/workflows/Python%20package/badge.svg)
