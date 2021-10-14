@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - name: psycopg2 prerequisites
+        run: sudo apt-get install libpq-dev
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -31,6 +33,14 @@ jobs:
         run: |
           python manage.py makemigrations acct
           python manage.py migrate
+        env:
+          DJANGO_SECRET_KEY: JustARandomStringOfCharacters
+          DJANGO_DEBUG: True
+          DATABASE_URL: sqlite:////tmp/db.sqlite3
       - name: Test with django built in test framework
         run: |
           python manage.py test acct
+        env:
+          DJANGO_SECRET_KEY: JustARandomStringOfCharacters!
+          DJANGO_DEBUG: True
+          DATABASE_URL: sqlite:////tmp/db.sqlite3
