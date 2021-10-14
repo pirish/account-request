@@ -1,0 +1,15 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: account-equest
+spec:
+  host: CHANGEME
+
+  upstreams:
+  - name: web
+    service: account-request
+    port: 8000
+  routes:
+  - path: /
+    action:
+      pass: web

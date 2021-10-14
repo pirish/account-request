@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: account-request-config
+  labels:
+    app: account-request
+data:
+  POSTGRES_HOST_AUTH_METHOD: "trust"
+  POSTGRES_DATABASE: "account-equest_db"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "ThisPasswordShouldBeChanged"
+  DJANGO_SECRET_KEY: "JustARandomStringOfCharacters"
+  DJANGO_DEBUG: "True"
+  DATABASE_URL: 'sqlite:////tmp/db.sqlite3'

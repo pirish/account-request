@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: account-request
+  name: account-request
+spec:
+  ports:
+  - name: "web"
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: account-request
+      #status:
+      #loadBalancer: {}

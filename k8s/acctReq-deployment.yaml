@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-request
+spec:
+  selector:
+    matchLabels:
+      app: account-request
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: account-request
+    spec:
+      containers:
+        - image: postgres:12
+          name: account-request-db
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: account-request-config
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data/"
+              name: "postgres-data"
+
+
+        - image: pirish/account-request
+          name: account-request
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: account-request-config
+      volumes:
+        - name: postgres-data
