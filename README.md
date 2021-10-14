@@ -23,6 +23,14 @@ Run development server
 ```
 python manage.py runserver
 ```
+## Initial setup for Docker/Kubernetes
+1. Update files in docker/k8s folders for your environment
+2. deploy files
+3. Exec into app container and run the following to populate the database schema and create adming user
+```
+python manage.py migrate
+python manage.py createsuperuser --username admin
+```
 
 ## Using
 
