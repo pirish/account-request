@@ -16,7 +16,7 @@ spec:
         - image: postgres:12
           name: account-request-db
           ports:
-            - containerPort: 8000
+            - containerPort: 5432
               name: http
               protocol: TCP
           envFrom:

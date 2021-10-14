@@ -6,7 +6,7 @@ metadata:
   name: account-request
 spec:
   ports:
-  - name: "web"
+  - name: "http"
     port: 8000
     targetPort: 8000
   selector:

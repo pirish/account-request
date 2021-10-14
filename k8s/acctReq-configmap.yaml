@@ -6,9 +6,10 @@ metadata:
     app: account-request
 data:
   POSTGRES_HOST_AUTH_METHOD: "trust"
-  POSTGRES_DATABASE: "account-equest_db"
+  POSTGRES_DATABASE: "postgres"
   POSTGRES_USER: "postgres"
   POSTGRES_PASSWORD: "ThisPasswordShouldBeChanged"
   DJANGO_SECRET_KEY: "JustARandomStringOfCharacters"
   DJANGO_DEBUG: "True"
-  DATABASE_URL: 'sqlite:////tmp/db.sqlite3'
+  DATABASE_URL: postgres://postgres:ThisPasswordShouldBeChanged@127.0.0.1:5432/postgres
+    #DATABASE_URL: 'sqlite:////tmp/db.sqlite3'
